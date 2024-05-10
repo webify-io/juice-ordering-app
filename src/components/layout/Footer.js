@@ -19,7 +19,7 @@ export default function Footer() {
 					target="_blank"
 					rel="noopener noreferrer"
 					style={{ marginLeft: '6px' }}
-					className="text-blue-400 font-semibold"
+					className="text-blue-400 font-medium hover:text-blue-500"
 				>
 					Webify<sup>&reg;</sup>
 				</a>
