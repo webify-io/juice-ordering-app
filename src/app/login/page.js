@@ -22,7 +22,9 @@ export default function LoginPage() {
 
 	return (
 		<section className="mt-8">
-			<h1 className="text-center text-primary text-4xl mb-4">Login</h1>
+			<h1 className="text-center text-primary text-4xl font-medium mb-4">
+				Login
+			</h1>
 
 			<form className="max-w-xs mx-auto" onSubmit={handleFormSubmit}>
 				<input
@@ -42,15 +44,14 @@ export default function LoginPage() {
 					disabled={loginInProgress}
 				/>
 				<button type="submit" disabled={loginInProgress}>
-					Login
+					Sign In
 				</button>
-				<div className="my-4 text-center text-gray-500">
-					or login with provider
-				</div>
+				<div className="my-4 text-center text-gray-500">You can also....</div>
 				<button
 					type="button"
 					onClick={() => signIn('google', { callbackUrl: '/' })}
 					className="flex gap-4 justify-center"
+					disabled={loginInProgress}
 				>
 					<Image
 						src={'/google.png'}
@@ -58,7 +59,7 @@ export default function LoginPage() {
 						width={24}
 						height={24}
 					></Image>
-					Login with Google
+					Sign in with Google
 				</button>
 			</form>
 		</section>

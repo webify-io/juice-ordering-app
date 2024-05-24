@@ -58,24 +58,22 @@ export default function RegisterPage() {
 			<form className="block max-w-xs mx-auto" onSubmit={handleFormSubmit}>
 				<input
 					type="email"
-					placeholder="Email"
+					placeholder="Your Email Address"
 					value={email}
 					onChange={(ev) => setEmail(ev.target.value)}
 					disabled={creatingUser}
 				/>
 				<input
 					type="password"
-					placeholder="Password"
+					placeholder="Choose a Password"
 					value={password}
 					onChange={(ev) => setPassword(ev.target.value)}
 					disabled={creatingUser}
 				/>
 				<button type="submit" disabled={creatingUser}>
-					Register
+					Create Account
 				</button>
-				<div className="my-4 text-center text-gray-500">
-					or login with provider
-				</div>
+				<div className="my-4 text-center text-gray-500">You can also....</div>
 				<button
 					type="button"
 					onClick={() => signIn('google', { callbackUrl: '/' })}
@@ -87,7 +85,7 @@ export default function RegisterPage() {
 						width={24}
 						height={24}
 					></Image>
-					Login with Google
+					Sign in with Google
 				</button>
 
 				<div className="text-center my-4 text-gray-500 border-t pt-4">

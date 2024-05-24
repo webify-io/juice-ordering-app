@@ -44,7 +44,7 @@ export default function Hero() {
 					src={'/strawberry-energy-juice.png'}
 					width={135}
 					height={135}
-					layout={'contain'}
+					objectFit="contain"
 					sizes={'(max-width: 600px) 80vw, (max-width: 900px) 50vw, 25vw'}
 					/* layout={'fill'}
 					sizes={'(max-width: 600px) 80vw, (max-width: 900px) 50vw, 25vw'}
