@@ -43,8 +43,8 @@ export default function Header() {
 							href={'/profile'}
 							className="flex items-center whitespace-nowrap gap-x-2 px-2 py-2"
 						>
-							Hello, {userName}
 							<UserAccount />
+							Hello, {userName}
 						</Link>
 
 						<button

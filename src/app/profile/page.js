@@ -1,11 +1,12 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ErrorBox from '../../components/layout/ErrorBox';
 import toast from 'react-hot-toast';
+import UserTabs from '../../components/layout/UserTabs';
+import EditableImage from '../../components/layout/EditableImage';
 
 export default function ProfilePage() {
 	const session = useSession();
@@ -21,6 +22,9 @@ export default function ProfilePage() {
 	const [postalCode, setPostalCode] = useState('');
 	const [city, setCity] = useState('');
 	const [province, setProvince] = useState('');
+	const [isAdmin, setIsAdmin] = useState(false);
+	// state when toggling adminTabs
+	const [profileFetched, setProfileFetched] = useState(false);
 
 	const { status } = session;
 	console.log({ session });
@@ -39,6 +43,8 @@ export default function ProfilePage() {
 					setCity(data.city);
 					setPostalCode(data.postalCode);
 					setProvince(data.province);
+					setIsAdmin(data.admin);
+					setProfileFetched(true);
 				});
 			});
 		}
@@ -47,12 +53,6 @@ export default function ProfilePage() {
 	// Function for handleProfileInfoUpdate
 	async function handleProfileInfoUpdate(ev) {
 		ev.preventDefault();
-		//setSaved(false);
-		//setIsSaving(true);
-		/* toast.loading('Saving...', {
-			duration: 3000,
-		}); */
-
 		// Handle Fetch Errors:
 		try {
 			const savingPromise = new Promise(async (resolve, reject) => {
@@ -85,40 +85,6 @@ export default function ProfilePage() {
 		}
 	}
 
-	// Function for handleFileChange
-	async function handleFileChange(ev) {
-		const files = ev.target.files;
-
-		if (files?.length === 1) {
-			const data = new FormData();
-			data.set('file', files[0]);
-
-			// Handle Fetch Errors:
-			try {
-				const uploadPromise = fetch('/api/upload', {
-					method: 'POST',
-					body: data,
-				}).then(async (response) => {
-					if (response.ok) {
-						return response.json().then((link) => {
-							setImage(link);
-						});
-					}
-					throw new Error('Something went wrong.');
-				});
-
-				await toast.promise(uploadPromise, {
-					loading: 'Uploading Image...',
-					success: 'Image Updated.',
-					error: "This didn't work.",
-				});
-			} catch (error) {
-				console.error('Network error:', error);
-				setError('Network error. Please try again later.');
-				toast.error('Network error. Please try again later.');
-			}
-		}
-	}
 	// Clear the error state when the component unmounts
 	useEffect(() => {
 		return () => {
@@ -126,33 +92,7 @@ export default function ProfilePage() {
 		};
 	}, []);
 
-	/* async function handleFileChange(ev) {
-		const files = ev.target.files;
-
-		if (files?.length === 1) {
-			const data = new FormData();
-			data.set('file', files[0]);
-			// set isUploading to true
-			setIsUploading(true);
-			const response = await fetch('/api/upload', {
-				method: 'POST',
-				body: data,
-			});
-			const link = await response.json();
-			// Set image to our link
-			setImage(link);
-			// set isUploading to false
-			setIsUploading(false);
-		}
-		// Check for Errors in API Responses:
-		if (!response.ok) {
-			const errorData = await response.json();
-			console.error('Error updating profile:', errorData);
-			return;
-		}
-	} */
-
-	if (status === 'loading') {
+	if (status === 'loading' || !profileFetched) {
 		return (
 			<section className="mt-8">
 				<h1 className="text-center text-primary text-2xl mb-4 py-12">
@@ -168,35 +108,15 @@ export default function ProfilePage() {
 
 	return (
 		<section className="mt-8">
-			<h1 className="text-center text-primary text-4xl font-medium mb-4">
-				Profile
-			</h1>
+			<UserTabs isAdmin={isAdmin} />
 
-			<div className="max-w-md mx-auto">
+			<div className="max-w-md mx-auto mt-8">
 				{error && <ErrorBox>{error}</ErrorBox>}
 
 				<div className="flex gap-4">
 					<div>
 						<div className="bg-gray-100 p-2 rounded-md max-w-[120px] min-w-[120px]">
-							{image && (
-								<Image
-									className="rounded-md w-full h-full mb-1"
-									src={image}
-									width={250}
-									height={250}
-									alt="avatar"
-								></Image>
-							)}
-							<label className="cursor-pointer">
-								<input
-									type="file"
-									className="hidden"
-									onChange={handleFileChange}
-								/>
-								<span className="block border border-gray-300 rounded-sm p-2 text-center">
-									Edit
-								</span>
-							</label>
+							<EditableImage link={image} setLink={setImage} />
 						</div>
 					</div>
 					<form className="grow" onSubmit={handleProfileInfoUpdate}>

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import User from '../../../models/User';
+import brypt from bcrypt;
 
 export async function POST(req) {
 	const body = await req.json();
@@ -16,4 +17,5 @@ export async function POST(req) {
 
 	const createdUser = await User.create(body);
 	return Response.json(createdUser);
+
 }
