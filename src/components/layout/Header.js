@@ -49,7 +49,7 @@ export default function Header() {
 
 						<button
 							onClick={() => signOut()}
-							className="bg-primary rounded-lg text-white px-6 py-2"
+							className="bg-primary rounded-lg text-white px-6 py-2  hover:bg-red-600 hover:shadow-md transition-all"
 						>
 							Logout
 						</button>

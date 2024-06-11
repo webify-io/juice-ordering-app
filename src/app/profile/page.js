@@ -110,7 +110,7 @@ export default function ProfilePage() {
 		<section className="mt-8">
 			<UserTabs isAdmin={isAdmin} />
 
-			<div className="max-w-md mx-auto mt-8">
+			<div className="max-w-2xl mx-auto mt-8">
 				{error && <ErrorBox>{error}</ErrorBox>}
 
 				<div className="flex gap-4">
@@ -120,8 +120,8 @@ export default function ProfilePage() {
 						</div>
 					</div>
 					<form className="grow" onSubmit={handleProfileInfoUpdate}>
-						<div className="flex gap-2">
-							<div>
+						<div className="flex gap-2 ">
+							<div className="grow">
 								<label>First Name</label>
 								<input
 									type="text"
@@ -130,7 +130,7 @@ export default function ProfilePage() {
 									onChange={(ev) => setUserName(ev.target.value)}
 								/>
 							</div>
-							<div>
+							<div className="grow">
 								<label>Last Name</label>
 								<input
 									type="text"
@@ -163,7 +163,7 @@ export default function ProfilePage() {
 							onChange={(ev) => setStreetAddress(ev.target.value)}
 						/>
 						<div className="flex gap-2">
-							<div>
+							<div className="grow">
 								<label>City</label>
 								<input
 									type="text"
@@ -172,7 +172,7 @@ export default function ProfilePage() {
 									onChange={(ev) => setCity(ev.target.value)}
 								/>
 							</div>
-							<div>
+							<div className="grow">
 								<label>Postal Code</label>
 								<input
 									type="text"

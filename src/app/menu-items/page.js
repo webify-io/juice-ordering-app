@@ -44,7 +44,7 @@ export default function MenuItemsPage() {
 	}
 
 	return (
-		<section className="mt-8 max-w-md mx-auto">
+		<section className="mt-8 max-w-2xl mx-auto">
 			<UserTabs isAdmin={true} />
 
 			<div className="mt-8">
@@ -59,15 +59,20 @@ export default function MenuItemsPage() {
 					Edit Menu Item:{' '}
 				</h2>
 
-				{menuItems?.length > 0 &&
-					menuItems.map((item) => (
-						<Link className="button mb-1" href={'/menu-items/edit/' + item._id}>
-							<div className="relative w-12">
-								<Image src={item.image} alt="" width={100} height={100} />
-							</div>
-							{item.name}
-						</Link>
-					))}
+				<div className="grid grid-cols-4 gap-2">
+					{menuItems?.length > 0 &&
+						menuItems.map((item) => (
+							<Link
+								className="flex-col bg-gray-200 opacity-90 p-4 rounded-lg hover:bg-white hover:shadow-md hover:shadow-black/25 transition-all"
+								href={'/menu-items/edit/' + item._id}
+							>
+								<div className="relative w-16">
+									<Image src={item.image} alt="" width={150} height={150} />
+								</div>
+								<div className="text-center">{item.name}</div>
+							</Link>
+						))}
+				</div>
 			</div>
 		</section>
 	);

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { MenuItem } from '../../../models/MenuItem';
 
+// POST for creating new menu-item:
 export async function POST(req) {
 	// Connect to the DB:
 	mongoose.connect(process.env.MONGO_URL);
@@ -10,10 +11,30 @@ export async function POST(req) {
 	return Response.json(menuItemDoc);
 }
 
+// PUT for updating menu-item:
+export async function PUT(req) {
+	// Connect to the DB:
+	mongoose.connect(process.env.MONGO_URL);
+
+	const { _id, ...data } = await req.json();
+	await MenuItem.findByIdAndUpdate(_id, data);
+	return Response.json(true);
+}
+
 // GET endpoint for fetch('/api/menu-items'):
 export async function GET() {
 	// Connect to the DB:
 	mongoose.connect(process.env.MONGO_URL);
 
 	return Response.json(await MenuItem.find());
+}
+
+// DELETE for deleting menu-items:
+export async function DELETE(req) {
+	mongoose.connect(process.env.MONGO_URL);
+
+	const url = new URL(req.url);
+	const _id = url.searchParams.get('_id');
+	await MenuItem.deleteOne({ _id });
+	return Response.json(true);
 }

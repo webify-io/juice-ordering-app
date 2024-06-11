@@ -60,7 +60,7 @@ export default function EditableImage({ link, setLink }) {
 				></Image>
 			)}
 			{!link && (
-				<div className="text-center bg-gray-100 px-4 py-8 text-gray-300 text-sm font-medium rounded-md mb-1">
+				<div className="text-center bg-gray-100 px-4 py-14 text-gray-300 text-sm font-medium rounded-md mb-1">
 					No Image
 				</div>
 			)}
