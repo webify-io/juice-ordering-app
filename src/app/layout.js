@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast';
 const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700'] });
 
 export const metadata = {
-	title: 'Create Next App',
+	title: 'Eezi Fruit App',
 	description: 'Develped by Webify Web Solutions',
 };
 

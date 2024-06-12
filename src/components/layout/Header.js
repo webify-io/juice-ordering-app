@@ -11,6 +11,7 @@ export default function Header() {
 
 	let userName;
 
+	// If the session is authenticated:
 	if (status === 'authenticated') {
 		userName = session.user?.name || session.user?.email;
 		if (userName && userName.includes(' ')) {
