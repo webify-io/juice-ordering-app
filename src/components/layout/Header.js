@@ -3,20 +3,23 @@
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import UserAccount from '../icons/UserAccount';
+import { useContext } from 'react';
+import { CartContext } from '../AppContext';
+import ShoppingCart from '../icons/ShoppingCart';
 
 export default function Header() {
 	// trying to access session.user and set userName if the session status is 'authenticated'
-	const { data: session, status } = useSession();
-	/* const session = useSession(); */
+	const session = useSession();
+	const status = session?.status;
+	const userData = session.data?.user;
 
-	let userName;
+	const { cartProducts } = useContext(CartContext);
+
+	let userName = userData?.name || userData?.email;
 
 	// If the session is authenticated:
-	if (status === 'authenticated') {
-		userName = session.user?.name || session.user?.email;
-		if (userName && userName.includes(' ')) {
-			userName = userName.split(' ')[0];
-		}
+	if (userName && userName.includes(' ')) {
+		userName = userName.split(' ')[0];
 	}
 
 	/* const status = session?.status; */
@@ -33,9 +36,9 @@ export default function Header() {
 			</Link>
 			<nav className="flex items-center gap-8 text-gray-500 font-semibold">
 				<Link href={'/'}>Home</Link>
-				<Link href={''}>Menu</Link>
-				<Link href={''}>About</Link>
-				<Link href={''}>Contact</Link>
+				<Link href={'/menu'}>Menu</Link>
+				<Link href={'/#about'}>About</Link>
+				<Link href={'/#contact'}>Contact</Link>
 			</nav>
 			<nav className="flex items-center gap-4 text-gray-500 font-semibold">
 				{status === 'authenticated' && (
@@ -68,6 +71,15 @@ export default function Header() {
 						</Link>
 					</>
 				)}
+
+				<Link href={'/cart'} className="relative">
+					<ShoppingCart />
+					<span className="absolute -top-4 -right-4 bg-primary text-white text-xs py-1 px-1 rounded-full leading-3">
+						{cartProducts.length}
+					</span>
+				</Link>
+				{/* {cartProducts?.length > 0 && (
+				)} */}
 			</nav>
 		</header>
 	);
