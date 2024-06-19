@@ -83,7 +83,7 @@ export default function EditMenuItemPage() {
 		return (
 			<section className="mt-8">
 				<h1 className="text-center text-primary text-2xl mb-4 py-12">
-					Loading User Info...
+					Loading Menu Item Info...
 				</h1>
 			</section>
 		);

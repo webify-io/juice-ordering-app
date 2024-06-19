@@ -2,8 +2,24 @@
 
 import { SessionProvider } from 'next-auth/react';
 import { createContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 export const CartContext = createContext({});
+
+// Function to calculate total price for item in Cart:
+export function cartProductPrice(cartProduct) {
+	let price = cartProduct.basePrice;
+
+	if (cartProduct.size) {
+		price += cartProduct.size.price;
+	}
+	if (cartProduct.extra?.length > 0) {
+		for (const extra of cartProduct.extras) {
+			price += extra.price;
+		}
+	}
+	return price;
+}
 
 export function AppProvider({ children }) {
 	const [cartProducts, setCartProducts] = useState([]);
@@ -29,6 +45,8 @@ export function AppProvider({ children }) {
 			saveCartProductsToLocalStorage(newCartProducts);
 			return newCartProducts;
 		});
+
+		toast.success('Product Removed');
 	}
 
 	function saveCartProductsToLocalStorage(cartProducts) {

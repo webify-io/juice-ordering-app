@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import EditableImage from '../../components/layout/EditableImage';
 import useProfile from '../UseProfile';
+import AddressInputs from './AddressInputs';
 
 export default function UserForm({ user, onSave }) {
 	const [userName, setUserName] = useState(user?.name || '');
@@ -17,6 +18,14 @@ export default function UserForm({ user, onSave }) {
 	const [province, setProvince] = useState(user?.province || '');
 	const [admin, setAdmin] = useState(user?.admin || false);
 	const { data: loggedInUserData } = useProfile();
+
+	function handleAddressChange(propName, value) {
+		if (propName === 'phone') setPhone(value);
+		if (propName === 'streetAddress') setStreetAddress(value);
+		if (propName === 'postalCode') setPostalCode(value);
+		if (propName === 'city') setCity(value);
+		if (propName === 'province') setProvince(value);
+	}
 
 	return (
 		<div className="flex gap-4">
@@ -69,46 +78,16 @@ export default function UserForm({ user, onSave }) {
 					disabled={true}
 					placeholder="Email"
 				/>
-				<label>Phone</label>
-				<input
-					type="tel"
-					placeholder="Phone Number"
-					value={phone}
-					onChange={(ev) => setPhone(ev.target.value)}
-				/>
-				<label>Street Address</label>
-				<input
-					type="text"
-					placeholder="Street Address"
-					value={streetAddress}
-					onChange={(ev) => setStreetAddress(ev.target.value)}
-				/>
-				<div className="flex gap-2">
-					<div className="grow">
-						<label>City</label>
-						<input
-							type="text"
-							placeholder="City"
-							value={city}
-							onChange={(ev) => setCity(ev.target.value)}
-						/>
-					</div>
-					<div className="grow">
-						<label>Postal Code</label>
-						<input
-							type="text"
-							placeholder="Postal Code"
-							value={postalCode}
-							onChange={(ev) => setPostalCode(ev.target.value)}
-						/>
-					</div>
-				</div>
-				<label>Province</label>
-				<input
-					type="text"
-					value={province}
-					placeholder="Province"
-					onChange={(ev) => setProvince(ev.target.value)}
+
+				<AddressInputs
+					addressProps={{
+						phone,
+						streetAddress,
+						city,
+						province,
+						postalCode,
+					}}
+					setAddressProp={handleAddressChange}
 				/>
 
 				{loggedInUserData.admin && (
