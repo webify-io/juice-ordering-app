@@ -51,25 +51,31 @@ export default function EditableImage({ link, setLink }) {
 	return (
 		<>
 			{link && (
-				<Image
-					className="rounded-md w-full h-full mb-1"
-					src={link}
-					width={250}
-					height={250}
-					alt="avatar"
-				></Image>
+				<div className="relative h-64 w-full md:h-96 md:w-full lg:h-64 lg:w-full">
+					<Image
+						className="rounded-md "
+						src={link}
+						//width={250}
+						//height={250}
+						alt="avatar"
+						layout="fill"
+						objectFit="contain"
+					></Image>
+				</div>
 			)}
 			{!link && (
 				<div className="text-center bg-gray-100 px-4 py-14 text-gray-300 text-sm font-medium rounded-md mb-1">
 					No Image
 				</div>
 			)}
-			<label className="cursor-pointer">
-				<input type="file" className="hidden" onChange={handleFileChange} />
-				<span className="block border border-gray-300 rounded-sm p-2 text-center">
-					Edit
-				</span>
-			</label>
+			<div className="mt-4">
+				<label className="cursor-pointer">
+					<input type="file" className="hidden" onChange={handleFileChange} />
+					<span className="block border border-gray-300 rounded-sm p-2 text-center hover:bg-slate-200">
+						Edit
+					</span>
+				</label>
+			</div>
 
 			{error && <ErrorBox>{error}</ErrorBox>}
 		</>

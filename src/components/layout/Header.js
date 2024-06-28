@@ -71,15 +71,14 @@ export default function Header() {
 						</Link>
 					</>
 				)}
-
 				<Link href={'/cart'} className="relative">
 					<ShoppingCart />
-					<span className="absolute -top-4 -right-4 bg-primary text-white text-xs py-1 px-1 rounded-full leading-3">
-						{cartProducts.length}
-					</span>
+					{cartProducts?.length > 0 && (
+						<span className="absolute -top-4 -right-4 bg-primary text-white text-xs py-1 px-1 rounded-full leading-3">
+							{cartProducts.length}
+						</span>
+					)}
 				</Link>
-				{/* {cartProducts?.length > 0 && (
-				)} */}
 			</nav>
 		</header>
 	);

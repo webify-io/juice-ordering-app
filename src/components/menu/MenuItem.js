@@ -27,7 +27,7 @@ export default function MenuItem(menuItem) {
 			setShowPopup(false);
 		}, 1000); */
 
-		setSelectedSize(null);
+		//setSelectedSize(null);
 		toast.success('Added To Cart!', {
 			position: 'top-left',
 		});
@@ -138,7 +138,7 @@ export default function MenuItem(menuItem) {
 								className="mt-2"
 								onClick={() => {
 									setShowPopup(false);
-									setSelectedSize(null);
+									//setSelectedSize(null);
 								}}
 							>
 								Cancel

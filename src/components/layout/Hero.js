@@ -39,16 +39,18 @@ export default function Hero() {
 				</div>
 			</div>
 
-			<div className="relative flex justify-center items-center">
+			<div className="flex justify-center items-center">
 				<Image
 					src={'/strawberry-energy-juice.png'}
 					width={135}
 					height={135}
 					objectFit="contain"
-					sizes={'(max-width: 600px) 80vw, (max-width: 900px) 50vw, 25vw'}
+					sizes={'(max-width: 900px) 100vw, 50vw'}
+					//sizes={'(max-width: 600px) 80vw, (max-width: 900px) 50vw, 25vw'}
 					/* layout={'fill'}
 					sizes={'(max-width: 600px) 80vw, (max-width: 900px) 50vw, 25vw'}
 					objectFit={'contain'} */
+					className="hidden md:block"
 					alt={'juice'}
 				/>
 			</div>

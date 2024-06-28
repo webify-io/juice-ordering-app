@@ -6,11 +6,19 @@ import { CartContext, cartProductPrice } from '../../components/AppContext';
 import Trash from '../../components/icons/Trash';
 import AddressInputs from '../../components/layout/AddressInputs';
 import useProfile from '../../components/UseProfile';
+import toast from 'react-hot-toast';
+import CartProduct from '../../components/menu/CardProduct';
 
 export default function CartPage() {
 	const { cartProducts, removeCartProduct } = useContext(CartContext);
 	const [address, setAddress] = useState({});
 	const { data: profileData } = useProfile();
+
+	useEffect(() => {
+		if (window.location.href.includes('canceled=1')) {
+			toast.error('Payment Failed 😢');
+		}
+	}, []);
 
 	// To fill the checkout form automatically:
 	useEffect(() => {
@@ -41,18 +49,44 @@ export default function CartPage() {
 
 	// FUNCTION for Stripe checkout:
 	async function proceedToCheckout(ev) {
+		ev.preventDefault();
 		// grab address and shopping cart products:
-		const response = await fetch('/api/checkout', {
-			method: 'POST',
-			headers: { 'Content-Type:': 'application/json' },
-			body: JSON.stringify({
-				address,
-				cartProducts,
-			}),
+		const promise = new Promise((resolve, reject) => {
+			fetch('/api/checkout', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					address,
+					cartProducts,
+				}),
+			}).then(async (response) => {
+				if (response.ok) {
+					resolve();
+					//redirect to stripe:
+					window.location = await response.json();
+				} else {
+					reject();
+				}
+			});
 		});
-		const link = await response.json();
-		//redirect to stripe:
-		window.location = link;
+
+		await toast.promise(promise, {
+			loading: 'Preparing your order...',
+			success: 'Redirecting to payment...',
+			error: 'Something went wrong... Please try again later.',
+		});
+	}
+
+	// If cartProducts() has been paid for or is empty:
+	if (cartProducts?.length === 0) {
+		return (
+			<section className="mt-8 text-center">
+				<SectionHeaders mainHeader="Cart" />
+				<div className="text-center text-gray-500 text-2xl mt-4 py-12">
+					Your Shopping Cart is empty. 😭
+				</div>
+			</section>
+		);
 	}
 
 	return (
@@ -69,45 +103,7 @@ export default function CartPage() {
 					)}
 					{cartProducts?.length > 0 &&
 						cartProducts.map((product, index) => (
-							<div className="flex items-center gap-4 border-b py-4">
-								<div className="max-w-24 ">
-									<img
-										src={product.image}
-										className="w-16 h-16 object-contain"
-										alt=""
-									/>
-								</div>
-								<div className="grow">
-									<h3 className="font-semibold">{product.name}</h3>
-									{product.size && (
-										<div className="text-sm ">
-											Size:
-											<span> {product.size.name}</span>
-										</div>
-									)}
-									{product.extras?.length > 0 && (
-										<div className="text-sm text-gray-500">
-											{product.extras.map((extra) => (
-												<div>
-													{extra.name} R{extra.price}
-												</div>
-											))}
-										</div>
-									)}
-								</div>
-								<div className="text-lg font-semibold">
-									R{cartProductPrice(product)}
-								</div>
-								<div className="ml-2">
-									<button
-										type="button"
-										onClick={() => removeCartProduct(index)}
-										className="p-2"
-									>
-										<Trash />
-									</button>
-								</div>
-							</div>
+							<CartProduct product={product} onRemove={removeCartProduct} />
 						))}
 
 					<div className="flex justify-end items-center py-2  pr-16">
@@ -116,10 +112,9 @@ export default function CartPage() {
 							Delivery Fee: <br />
 							Total:
 						</div>
-						<div className="text-lg font-semibold pl-2 text-right">
+						<div className="font-semibold pl-2 text-right">
 							R{subTotal} <br />
-							R60 <br />
-							{subTotal + 60}
+							R120 <br />R{subTotal + 120}
 						</div>
 					</div>
 				</div>
@@ -131,7 +126,7 @@ export default function CartPage() {
 							addressProps={address}
 							setAddressProp={handleAddressChange}
 						/>
-						<button type="submit">Pay R{subTotal}</button>
+						<button type="submit">Pay R{subTotal + 120}</button>
 					</form>
 				</div>
 			</div>

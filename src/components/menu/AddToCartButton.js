@@ -21,11 +21,12 @@ export default function AddToCartButton({
 			onClick={onClick}
 			className="bg-primary text-white rounded-lg px-8 py-2  hover:bg-gray-700 transition-all"
 		>
-			{hasSizesOrExtras ? (
+			<span>From R{basePrice}</span>
+			{/* {hasSizesOrExtras ? (
 				<span>From R{basePrice}</span>
 			) : (
 				<span>Add to Cart R{basePrice}</span>
-			)}
+			)} */}
 		</button>
 	);
 }
