@@ -12,7 +12,7 @@ export default function AddressInputs({
 				disabled={disabled}
 				type="tel"
 				placeholder="Phone Number"
-				value={phone}
+				value={phone || ''}
 				onChange={(ev) => setAddressProp('phone', ev.target.value)}
 			/>
 			<label>Street Address</label>
@@ -20,7 +20,7 @@ export default function AddressInputs({
 				disabled={disabled}
 				type="text"
 				placeholder="Street Address"
-				value={streetAddress}
+				value={streetAddress || ''}
 				onChange={(ev) => setAddressProp('streetAddress', ev.target.value)}
 			/>
 			<div className="flex gap-2">
@@ -30,7 +30,7 @@ export default function AddressInputs({
 						disabled={disabled}
 						type="text"
 						placeholder="City"
-						value={city}
+						value={city || ''}
 						onChange={(ev) => setAddressProp('city', ev.target.value)}
 					/>
 				</div>
@@ -40,7 +40,7 @@ export default function AddressInputs({
 						disabled={disabled}
 						type="text"
 						placeholder="Postal Code"
-						value={postalCode}
+						value={postalCode || ''}
 						onChange={(ev) => setAddressProp('postalCode', ev.target.value)}
 					/>
 				</div>
@@ -50,7 +50,7 @@ export default function AddressInputs({
 				disabled={disabled}
 				type="text"
 				placeholder="Province"
-				value={province}
+				value={province || ''}
 				onChange={(ev) => setAddressProp('province', ev.target.value)}
 			/>
 		</>

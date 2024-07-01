@@ -41,8 +41,11 @@ export default function OrdersPage() {
 
 				{orders?.length > 0 &&
 					orders.map((order) => (
-						<div className="flex gap-6 items-center bg-gray-200 mb-2 p-4 rounded-lg">
-							<div className="flex grow items-center gap-6">
+						<div
+							key={order._id}
+							className="flex flex-col md:flex-row gap-6 items-center bg-gray-200 mb-2 p-4 rounded-lg"
+						>
+							<div className="flex grow flex-col md:flex-row items-center gap-6">
 								<div
 									className={
 										(order.paid ? 'bg-green-500' : 'bg-red-400') +
@@ -53,13 +56,13 @@ export default function OrdersPage() {
 								</div>
 
 								<div className="text-sm grow">
-									<div className="flex gap-2 items-center mb-1">
+									<div className="md:flex gap-2 items-center mb-1">
 										<div className="font-medium grow">{order.userEmail}</div>
 										<div>{dbTimeForHumans(order.createdAt)}</div>
 									</div>
 
 									<div className="text-gray-500 text-xs">
-										<div className="flex">
+										<div className="md:flex">
 											<div className="grow">
 												{order.cartProducts.map((p) => p.name).join(', ')}
 											</div>

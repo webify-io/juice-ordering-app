@@ -151,7 +151,10 @@ export default function CategoriesPage() {
 				</h2>
 				{categories?.length > 0 &&
 					categories.map((c) => (
-						<div className="bg-gray-200 rounded-xl p-2 px-4 flex gap-1 mb-1 items-center">
+						<div
+							key={c._id}
+							className="bg-gray-200 rounded-xl p-2 px-4 flex gap-1 mb-1 items-center"
+						>
 							<div className="grow ">{c.name}</div>
 							<div className="flex gap-1">
 								<button

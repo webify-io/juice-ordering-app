@@ -44,7 +44,7 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
 				<div>
 					<EditableImage link={image} setLink={setImage} />
 				</div>
-				<div className="grow">
+				<div className="grow mt-2">
 					<label>Item Name:</label>
 					<input
 						type="text"
@@ -70,7 +70,11 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
 						onChange={(ev) => setCategory(ev.target.value)}
 					>
 						{categories?.length > 0 &&
-							categories.map((c) => <option value={c._id}>{c.name}</option>)}
+							categories.map((c) => (
+								<option key={c._id} value={c._id}>
+									{c.name}
+								</option>
+							))}
 					</select>
 
 					<MenuItemPriceProps

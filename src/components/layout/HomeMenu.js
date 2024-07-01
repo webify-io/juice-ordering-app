@@ -49,13 +49,13 @@ export default function HomeMenu() {
 				</div>
 			</div>
 
-			<div className="text-center mb-4">
+			<div className="text-center my-4">
 				<SectionHeaders subHeader={'Check Our'} mainHeader={'Best Sellers'} />
 			</div>
 
 			<div className="grid sm:grid-cols-3 gap-4">
 				{bestSellers?.length > 0 &&
-					bestSellers.map((item) => <MenuItem {...item} />)}
+					bestSellers.map((item) => <MenuItem key={item._id} {...item} />)}
 			</div>
 		</section>
 	);

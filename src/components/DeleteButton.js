@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export default function DeleteButton({ label, onDelete }) {
-	const [showConfirm, setShowCOnfirm] = useState(false);
+	const [showConfirm, setShowConfirm] = useState(false);
 
 	if (showConfirm) {
 		return (
@@ -9,7 +9,7 @@ export default function DeleteButton({ label, onDelete }) {
 				<div className=" bg-white p-4 rounded-md">
 					<div>Are you sure you want to delete?</div>
 					<div className="flex gap-2 mt-1">
-						<button type="button" onClick={() => setShowCOnfirm(false)}>
+						<button type="button" onClick={() => setShowConfirm(false)}>
 							Cancel
 						</button>
 						<button onClick={onDelete} type="button" className="primary">
@@ -22,7 +22,7 @@ export default function DeleteButton({ label, onDelete }) {
 	}
 
 	return (
-		<button type="button" onClick={() => setShowCOnfirm(true)}>
+		<button type="button" onClick={() => setShowConfirm(true)}>
 			{label}
 		</button>
 	);

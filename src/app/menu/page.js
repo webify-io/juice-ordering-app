@@ -21,7 +21,7 @@ export default function MenuPage() {
 		<section className="mt-8">
 			{categories?.length > 0 &&
 				categories.map((c) => (
-					<div>
+					<div key={c._id}>
 						<div className="text-center mt-12 mb-8">
 							<SectionHeaders mainHeader={c.name} />
 						</div>
@@ -29,7 +29,7 @@ export default function MenuPage() {
 							{menuItems
 								.filter((m) => m.category == c._id)
 								.map((item) => (
-									<MenuItem {...item} />
+									<MenuItem key={item._id} {...item} />
 								))}
 						</div>
 					</div>

@@ -112,7 +112,7 @@ export default function EditMenuItemPage() {
 				</div>
 				<MenuItemForm menuItem={menuItem} onSubmit={handleFormSubmit} />
 				<div className="max-w-md mx-auto mt-2">
-					<div className=" max-w-sm ml-auto pl-9">
+					<div className=" max-w-sm ml-auto md:pl-9">
 						<DeleteButton
 							label="Delete Menu Item"
 							onDelete={handleDeleteClick}

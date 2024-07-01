@@ -37,6 +37,7 @@ export function AppProvider({ children }) {
 		saveCartProductsToLocalStorage([]);
 	}
 
+	// Function to remove item in Cart:
 	function removeCartProduct(indexToRemove) {
 		setCartProducts((prevCartProducts) => {
 			const newCartProducts = prevCartProducts.filter(

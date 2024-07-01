@@ -71,8 +71,8 @@ export default function EditableImage({ link, setLink }) {
 			<div className="mt-4">
 				<label className="cursor-pointer">
 					<input type="file" className="hidden" onChange={handleFileChange} />
-					<span className="block border border-gray-300 rounded-sm p-2 text-center hover:bg-slate-200">
-						Edit
+					<span className="block border border-gray-300 rounded-sm p-3 text-center cursor-pointer hover:bg-slate-200">
+						Edit Image
 					</span>
 				</label>
 			</div>

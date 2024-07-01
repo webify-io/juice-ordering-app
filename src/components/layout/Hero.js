@@ -4,7 +4,7 @@ import Right from '../icons/Right';
 export default function Hero() {
 	return (
 		<section className="hero">
-			<div className="py-12">
+			<div className="py-8 md:py-12">
 				<h1 className="text-4xl font-semibold">
 					Squeeze the Day with Nature's{' '}
 					<span className="text-primary">Essence</span>
