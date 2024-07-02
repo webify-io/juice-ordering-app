@@ -75,7 +75,7 @@ export default function OrdersPage() {
 							<div className="whitespace-nowrap w-28">
 								<Link
 									href={'/orders/' + order._id}
-									className="button bg-gray-300 hover:bg-slate-100"
+									className="button  bg-slate-100 hover:bg-slate-300"
 								>
 									Show Order
 								</Link>

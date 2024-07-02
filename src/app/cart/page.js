@@ -94,7 +94,7 @@ export default function CartPage() {
 			<div className="text-center">
 				<SectionHeaders mainHeader="Cart" />
 			</div>
-			<div className="mt-8 grid grid-cols-2 gap-8">
+			<div className="mt-8 grid md:grid-cols-2 md:gap-8">
 				<div>
 					{cartProducts?.length === 0 && (
 						<div className="text-center text-primary text-2xl mb-4 py-12">
@@ -124,7 +124,7 @@ export default function CartPage() {
 					</div>
 				</div>
 
-				<div className="bg-gray-100 p-4 rounded-lg m-10">
+				<div className="bg-gray-100 p-4 rounded-lg md:m-10">
 					<h2>Checkout:</h2>
 					<form onSubmit={proceedToCheckout}>
 						<AddressInputs
