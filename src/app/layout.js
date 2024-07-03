@@ -9,7 +9,7 @@ const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700'] });
 
 export const metadata = {
 	title: 'Eezi Fruit App',
-	description: 'Develped by Webify Web Solutions',
+	description: 'Developed by Webify Web Solutions',
 };
 
 export default function RootLayout({ children }) {

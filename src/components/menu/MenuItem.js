@@ -28,9 +28,11 @@ export default function MenuItem(menuItem) {
 		}, 1000); */
 
 		//setSelectedSize(null);
-		toast.success('Added To Cart!', {
+		toast.success(
+			'Added To Cart!' /* , {
 			position: 'top-left',
-		});
+		} */
+		);
 	}
 
 	function handleExtraThingClick(ev, extraThing) {

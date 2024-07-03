@@ -94,7 +94,7 @@ export default function CartPage() {
 			<div className="text-center">
 				<SectionHeaders mainHeader="Cart" />
 			</div>
-			<div className="mt-8 grid md:grid-cols-2 md:gap-8">
+			<div className="mt-8 md:grid md:grid-cols-2 md:gap-8">
 				<div>
 					{cartProducts?.length === 0 && (
 						<div className="text-center text-primary text-2xl mb-4 py-12">
@@ -119,13 +119,14 @@ export default function CartPage() {
 						</div>
 						<div className="font-semibold pl-2 text-right">
 							R{subTotal} <br />
-							R120 <br />R{subTotal + 120}
+							<span className="text-gray-500">R120</span> <br />R
+							{subTotal + 120}
 						</div>
 					</div>
 				</div>
 
 				<div className="bg-gray-100 p-4 rounded-lg md:m-10">
-					<h2>Checkout:</h2>
+					<h2 className="font-semibold">Checkout:</h2>
 					<form onSubmit={proceedToCheckout}>
 						<AddressInputs
 							addressProps={address}

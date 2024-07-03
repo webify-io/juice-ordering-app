@@ -5,7 +5,7 @@ import Trash from '../icons/Trash';
 export default function CartProduct({ product, index, onRemove }) {
 	return (
 		<div className="flex items-center gap-4 border-b py-4">
-			<div className="max-w-24 ">
+			<div className="max-w-14 ">
 				<Image
 					src={product.image}
 					className="w-16 h-16 object-contain"

@@ -41,7 +41,7 @@ export default function OrderPage() {
 		<section className="max-w-2xl mx-auto mt-8 ">
 			<div className="text-center ">
 				<SectionHeaders mainHeader="Your Order" />
-				<div className="mt-8 mb-12 text-primary text-2xl ">
+				<div className="mt-8 mb-12 text-primary text-lg ">
 					<p>Thanks for your order.</p>
 					<p>We will call you when your order is on the way.</p>
 				</div>
@@ -68,7 +68,7 @@ export default function OrderPage() {
 							</span>
 							<br />
 							Delivery:
-							<span className="text-black font-bold inline-block w-14">
+							<span className="text-gray-500 font-bold inline-block w-14">
 								R120
 							</span>
 							<br />
