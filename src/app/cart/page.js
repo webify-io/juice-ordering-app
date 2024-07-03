@@ -94,7 +94,7 @@ export default function CartPage() {
 			<div className="text-center">
 				<SectionHeaders mainHeader="Cart" />
 			</div>
-			<div className="mt-8 md:grid md:grid-cols-2 md:gap-8">
+			<div className="mt-8 grid md:grid-cols-2 md:gap-8">
 				<div>
 					{cartProducts?.length === 0 && (
 						<div className="text-center text-primary text-2xl mb-4 py-12">
