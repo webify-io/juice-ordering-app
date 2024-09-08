@@ -15,7 +15,7 @@ export default function Footer() {
 			<div>
 				&copy; {currentYear} | All Rights Reserved | Powered by
 				<a
-					href="https://webify-io.github.io/webify/"
+					href="https://webify.org/"
 					target="_blank"
 					rel="noopener noreferrer"
 					style={{ marginLeft: '6px' }}

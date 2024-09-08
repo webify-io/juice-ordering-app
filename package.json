@@ -19,7 +19,7 @@
     "next": "^14.2.3",
     "next-auth": "^4.24.7",
     "react": "^18.3.1",
-    "react-dom": "^18.2.0",
+    "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
     "stripe": "^15.12.0",
     "uniqid": "^5.4.0",
