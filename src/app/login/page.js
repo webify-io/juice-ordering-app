@@ -43,7 +43,11 @@ export default function LoginPage() {
 					onChange={(ev) => setPassword(ev.target.value)}
 					disabled={loginInProgress}
 				/>
-				<button type="submit" disabled={loginInProgress}>
+				<button
+					type="submit"
+					onClick={handleFormSubmit()}
+					disabled={loginInProgress}
+				>
 					Sign In
 				</button>
 				<div className="my-4 text-center text-gray-500">You can also....</div>
