@@ -20,6 +20,31 @@ export default function LoginPage() {
 		setLoginInProgress(false);
 	}
 
+	/* async function handleFormSubmit(ev) {
+		ev.preventDefault();
+		setLoginInProgress(true);
+
+		console.log('Form submitted with:', { email, password });
+
+		const result = await signIn('credentials', {
+			redirect: false, // prevent automatic redirect to the callbackUrl
+			email,
+			password,
+			callbackUrl: '/',
+		});
+
+		console.log('signIn result:', result);
+
+		setLoginInProgress(false);
+
+		if (result.error) {
+			console.error('Error logging in:', result.error);
+		} else {
+			console.log('User logged in successfully');
+			window.location.href = result.url; // manually redirect if needed
+		}
+	} */
+
 	return (
 		<section className="mt-8">
 			<h1 className="text-center text-primary text-4xl font-medium mb-4">
@@ -43,11 +68,7 @@ export default function LoginPage() {
 					onChange={(ev) => setPassword(ev.target.value)}
 					disabled={loginInProgress}
 				/>
-				<button
-					type="submit"
-					onClick={handleFormSubmit()}
-					disabled={loginInProgress}
-				>
+				<button type="submit" disabled={loginInProgress}>
 					Sign In
 				</button>
 				<div className="my-4 text-center text-gray-500">You can also....</div>
