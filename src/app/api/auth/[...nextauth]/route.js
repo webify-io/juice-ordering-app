@@ -38,9 +38,9 @@ export const authOptions = {
 
 				if (passwordOk) {
 					return user;
+				} else {
+					return null;
 				}
-
-				return null;
 			},
 		}),
 	],
